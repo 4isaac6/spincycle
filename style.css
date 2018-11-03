@@ -15,7 +15,7 @@ a {
 
 body {
     color: WhiteSmoke;
-    background: #2F2424;
+    background-color: #2F2424;
 }
 
 .tabs {
@@ -79,7 +79,7 @@ body {
     position: absolute;
     background-color: #2F2424;
 
-    -webkit-animation: counterClockwiseOrbit 11s linear infinite;
+    -webkit-animation: counterClockwiseOrbit 17s linear infinite;
 }
 
 .inner-ring {
@@ -124,6 +124,11 @@ body {
     border-radius: 50%;
     word-break: break-all;
     margin: 0.9275em 0.2575em;
+}
+
+#lyric {
+    font-size: 12px;
+    font-family: "Lucida Console", Monaco, monospace;
 }
 
 #tac {
