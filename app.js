@@ -20,7 +20,7 @@ function render(lyric) {
 
     r = lyricContainer.clientHeight / parseInt(s, 10);
 
-    for (let c = 0, h = 1; c < lyric.length; c += l, h += 3) {
+    for (let c = 0, h = 1.25; c < lyric.length; c += l, h += 3) {
         line = document.createElement('div');
         l = Math.floor(Math.pow((8 * r * h) - 4 * Math.pow(h, 2), 1/2));
 
