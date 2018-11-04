@@ -12,6 +12,7 @@ function Particle(x, y, origin) {
 
 Particle.prototype.integrate = function() {
     let velocity = this.getVelocity();
+
     this.oldX = this.x;
     this.oldY = this.y;
     this.x += velocity.x * DAMPING;
@@ -31,11 +32,23 @@ Particle.prototype.move = function(x, y) {
 };
 
 Particle.prototype.remove = function(i) {
-    if (this.y > emptyRect.bottom && this.y < emptyRect.bottom + 10) {
+    if (this.y > gutterRect.bottom && this.y < gutterRect.bottom + 10) {
         let velocity = this.getVelocity();
 
-        if (velocity.y < 0.24) {
+        if (origin === "gutter" && this.y > display.height) {
+            gutterDrops.splice(i, 1);
+
+            return true;
+        } else if (velocity.y < 0.24) {
+            let gutterDrop = new Particle(gutterRect.right, gutterRect.bottom, "gutter");
+            gutterDrop.move(0, 0);
+
+            setTimeout(() => {
+                gutterDrops.push(gutterDrop);
+            }, 12000 * this.x / gutterRect.width);
+
             drops.splice(i, 1);
+
             return true;
         }
     }
@@ -44,9 +57,9 @@ Particle.prototype.remove = function(i) {
 };
 
 Particle.prototype.bounce = function() {
-    if (this.y > emptyRect.bottom && this.y < emptyRect.bottom + 10) {
+    if (this.y > gutterRect.bottom && this.y < gutterRect.bottom + 10) {
         let velocity = this.getVelocity();
-        this.oldY = emptyRect.bottom;
+        this.oldY = gutterRect.bottom;
         this.y = this.oldY - velocity.y * GRAVITY;
     }
 };
@@ -62,10 +75,12 @@ Particle.prototype.infinityFall = function() {
 Particle.prototype.draw = function() {
     ctx.lineWidth = 3;
 
-    if (this.origin === 'inner') {
+    if (this.origin === "inner") {
         ctx.strokeStyle = innerColour;
-    } else if (this.origin === 'outer') {
+    } else if (this.origin === "outer") {
         ctx.strokeStyle = outerColour;
+    } else if (this.origin === "gutter") {
+        ctx.strokeStyle = innerColour;
     } else {
         ctx.strokeStyle = defaultColour;
     }
@@ -181,14 +196,31 @@ function frame() {
         drops[i].bounce();
         drops[i].draw();
     }
+
+    for (let i = 0; i < gutterDrops.length; i++) {
+        if (i % 6 !== 0) {
+            continue;
+        }
+
+        gutterDrops[i].move(0, GRAVITY);
+        gutterDrops[i].integrate();
+
+        if (gutterDrops[i].remove(i)) {
+            gutterDrops.splice(i, 1);
+            continue;
+        }
+
+        gutterDrops[i].draw();
+    }
 }
 
 var ctx;
 var drops = [];
+var gutterDrops = [];
 const display = document.getElementById('display');
-const empty = document.getElementsByClassName('empty')[0];
 const theCore = document.getElementsByClassName('core')[0];
 const theVoid = document.getElementsByClassName('void')[0];
+const gutter = document.getElementsByClassName('gutter')[0];
 const innerRing = document.getElementsByClassName('inner-ring')[0];
 const outerRing = document.getElementsByClassName('outer-ring')[0];
 
@@ -196,7 +228,7 @@ const cRect = theCore.getBoundingClientRect();
 const vRect = theVoid.getBoundingClientRect();
 const irRect = innerRing.getBoundingClientRect();
 const orRect = outerRing.getBoundingClientRect();
-const emptyRect = empty.getBoundingClientRect();
+const gutterRect = gutter.getBoundingClientRect();
 
 const innerColour = window.getComputedStyle(innerRing, null).getPropertyValue('background-color');
 const outerColour = window.getComputedStyle(outerRing, null).getPropertyValue('background-color');
