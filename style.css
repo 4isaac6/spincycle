@@ -1,11 +1,21 @@
 @-webkit-keyframes innerOrbit {
-    from { -webkit-transform: rotate(0deg) translateX(0.4125em) rotate(0deg); }
-    to   { -webkit-transform: rotate(360deg) translateX(0.4125em) rotate(-360deg); }
+    from {
+        -webkit-transform: rotate(0deg) translateX(0.4125em) rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg) translateX(0.4125em) rotate(-360deg);
+    }
 }
 
 @-webkit-keyframes outerOrbit {
-    from { -webkit-transform: rotate(0deg) translateX(0.395em) rotate(0deg); }
-    to   { -webkit-transform: rotate(360deg) translateX(0.395em) rotate(-360deg); }
+    from {
+        -webkit-transform: rotate(0deg) translateX(0.395em) rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg) translateX(0.395em) rotate(-360deg);
+    }
 }
 
 a {
@@ -79,7 +89,6 @@ body {
     border-radius: 50%;
     position: absolute;
     background-color: #2F2424;
-
     -webkit-animation: outerOrbit 17s linear infinite;
 }
 
@@ -100,7 +109,6 @@ body {
     height: 6.718125em;
     border-radius: 50%;
     background-color: #2F2424;
-
     -webkit-animation: innerOrbit 11s linear infinite;
 }
 
