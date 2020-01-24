@@ -1,0 +1,142 @@
+@-webkit-keyframes innerOrbit {
+    from {
+        -webkit-transform: rotate(0deg) translateX(0.4125em) rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg) translateX(0.4125em) rotate(-360deg);
+    }
+}
+
+@-webkit-keyframes outerOrbit {
+    from {
+        -webkit-transform: rotate(0deg) translateX(0.395em) rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg) translateX(0.395em) rotate(-360deg);
+    }
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+body {
+    color: WhiteSmoke;
+    background-color: #9C0935;
+    font-family: "Source Sans Pro", HelveticaNeue-Light, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+.tabs {
+    font-size: 1em;
+    margin-top: 5%;
+    gutter-cells: show;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    text-transform: lowercase;
+    border-collapse: collapse;
+}
+
+.tabs td {
+    padding: 0.25em 2em;
+}
+
+.tabs td.selected {
+    border-top: 1px solid #0b0104;
+    border-left: 1px solid #0b0104;
+    border-right: 1px solid #0b0104;
+}
+
+.tabs td.filled {
+    border-top: 1px solid #0b0104;
+    border-left: 1px solid #0b0104;
+    border-right: 1px solid #0b0104;
+    border-bottom: 1px solid #0b0104;
+}
+
+.tabs td.gutter {
+    width: 82.5%;
+    border-bottom: 1px solid #0b0104;
+}
+
+.space {
+    top: 50%;
+    left: 50%;
+    width: 10em;
+    height: 10em;
+    position: absolute;
+    border-radius: 50%;
+    background-color: inherit;
+    transform: translate(-50%, -50%);
+}
+
+.outer-ring {
+    width: 10em;
+    height: 10em;
+    position: inherit;
+    border-radius: 50%;
+    background-color: #0b0104;
+}
+
+.void {
+    /* No animation offset
+    margin: 0.63575em; */
+    margin: 0.375em;
+    width: 9.2575em;
+    height: 9.2575em;
+    border-radius: 50%;
+    position: absolute;
+    background-color: #9C0935;
+    -webkit-animation: outerOrbit 17s linear infinite;
+}
+
+.inner-ring {
+    width: 7.5em;
+    height: 7.5em;
+    position: inherit;
+    border-radius: 50%;
+    margin: 0.6718125em;
+    background-color: #099C70; /* #48B971 */
+}
+
+.core {
+    /* No animation offset
+    margin: 0.106875em; */
+    margin: 0.4em;
+    width: 6.718125em;
+    height: 6.718125em;
+    border-radius: 50%;
+    background-color: #9C0935;
+    -webkit-animation: innerOrbit 11s linear infinite;
+}
+
+.credit {
+    z-index: 1;
+    text-align: center;
+    position: absolute;
+    left: calc(50% - 18.2109375px);
+}
+
+#display {
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+#lyricContainer {
+    width: 10.1875em;
+    height: 10.1875em;
+    position: absolute;
+    text-align: center;
+    border-radius: 50%;
+    word-break: break-all;
+    margin: 0.925em 0.225em;
+}
+
+#tca {
+    height: 87.5%;
+    font-size: 20px;
+    position: relative;
+}
