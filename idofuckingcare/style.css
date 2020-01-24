@@ -57,7 +57,7 @@ body {
 }
 
 .tabs td.gutter {
-    width: 82.5%;
+    width: 86.75%;
     border-bottom: 1px solid #0b0104;
 }
 
@@ -98,7 +98,7 @@ body {
     position: inherit;
     border-radius: 50%;
     margin: 0.6718125em;
-    background-color: #099C70; /* #48B971 */
+    background-color: #606060;
 }
 
 .core {
