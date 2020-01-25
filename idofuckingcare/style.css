@@ -25,7 +25,7 @@ a {
 
 body {
     color: WhiteSmoke;
-    background-color: #9C0935;
+    background-color: #0B0104;
     font-family: "Source Sans Pro", HelveticaNeue-Light, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
@@ -44,21 +44,21 @@ body {
 }
 
 .tabs td.selected {
-    border-top: 1px solid #0b0104;
-    border-left: 1px solid #0b0104;
-    border-right: 1px solid #0b0104;
+    border-top: 1px solid #9C0935;
+    border-left: 1px solid #9C0935;
+    border-right: 1px solid #9C0935;
 }
 
 .tabs td.filled {
-    border-top: 1px solid #0b0104;
-    border-left: 1px solid #0b0104;
-    border-right: 1px solid #0b0104;
-    border-bottom: 1px solid #0b0104;
+    border-top: 1px solid #9C0935;
+    border-left: 1px solid #9C0935;
+    border-right: 1px solid #9C0935;
+    border-bottom: 1px solid #9C0935;
 }
 
 .tabs td.gutter {
-    width: 86.75%;
-    border-bottom: 1px solid #0b0104;
+    width: 85%;
+    border-bottom: 1px solid #9C0935;
 }
 
 .space {
@@ -77,7 +77,7 @@ body {
     height: 10em;
     position: inherit;
     border-radius: 50%;
-    background-color: #0b0104;
+    background-color: #9C0935;
 }
 
 .void {
@@ -88,7 +88,7 @@ body {
     height: 9.2575em;
     border-radius: 50%;
     position: absolute;
-    background-color: #9C0935;
+    background-color: #0B0104;
     -webkit-animation: outerOrbit 17s linear infinite;
 }
 
@@ -98,7 +98,7 @@ body {
     position: inherit;
     border-radius: 50%;
     margin: 0.6718125em;
-    background-color: #606060;
+    background-color: #CC0C45;
 }
 
 .core {
@@ -108,7 +108,7 @@ body {
     width: 6.718125em;
     height: 6.718125em;
     border-radius: 50%;
-    background-color: #9C0935;
+    background-color: #0B0104;
     -webkit-animation: innerOrbit 11s linear infinite;
 }
 

@@ -1,15 +1,15 @@
 /**
  * Author: Isaac Streight
  * Start Date: January 24th, 2020
- * Project inspired by a girl, a complex relationship, and an unprecidented fallout
+ * Project inspired by a girl, blackbear, and an unprecidented fallout
  *  2 months, 29 days better.
  */
 
 const lyrics = {
     "idfc": `
 cause i have hella feelings for you
-i act like i dont fucking care
-cause im so scared
+i act like i dont fkn care
+cause im so fkn scared
 im only a fool for you
     `
 };
