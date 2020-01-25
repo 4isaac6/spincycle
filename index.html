@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
 
-    <title>the curve approached</title>
+    <title>spin cycle</title>
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="css/red.css">
+    <link rel="stylesheet" type="text/css" href="css/gold.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
     <table class="tabs">
         <tbody>
             <tr>
-                <td class="filled">
+                <td class="selected" onclick="load(event.target)" data-theme="gold">
                     the curve approached
                 </td>
-                <td class="gutter">
-                    inspired by an ex-girlfriend, rise against, and a coffee cup
+                <td class="filled" onclick="load(event.target)" data-theme="red">
+                    i do fucking care
                 </td>
+                <td class="gutter"></td>
             </tr>
         </tbody>
     </table>
@@ -31,17 +34,15 @@
                     </div>
                 </div>
             </div>
-            <div id="lyricContainer">
-                <div id="lyric"></div>
-            </div>
+            <div id="lyricContainer"></div>
         </div>
     </div>
 
-    <a class="credit" href="http://www.riseagainst.com/music/endgame-appeal-reason-siren-song-counter-culture-sufferer-witness/approaching-curve">
+    <a class="credit">
         credit
     </a>
 
-    <canvas id='display' />
+    <canvas id="display"></canvas>
 
     <script src="app.js"></script>
     <script src="particles.js"></script>

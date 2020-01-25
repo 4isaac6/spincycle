@@ -4,92 +4,94 @@
 const GRAVITY = 0.3;
 const DAMPING = 0.9999;
 
-function Particle(x, y, origin) {
-    this.origin = origin;
-    this.x = this.oldX = x;
-    this.y = this.oldY = y;
-}
+class Particle {
+    constructor(x, y, origin) {
+        this.origin = origin;
+        this.x = this.oldX = x;
+        this.y = this.oldY = y;
+    }
 
-Particle.prototype.integrate = function() {
-    let velocity = this.getVelocity();
-
-    this.oldX = this.x;
-    this.oldY = this.y;
-    this.x += velocity.x * DAMPING;
-    this.y += velocity.y * DAMPING;
-};
-
-Particle.prototype.getVelocity = function() {
-    return {
-        x: this.x - this.oldX,
-        y: this.y - this.oldY
-    };
-};
-
-Particle.prototype.move = function(x, y) {
-    this.x += x;
-    this.y += y;
-};
-
-Particle.prototype.remove = function(i) {
-    if (this.y > gutterRect.bottom && this.y < gutterRect.bottom + 10) {
+    integrate() {
         let velocity = this.getVelocity();
 
-        if (origin === "gutter" && this.y > display.height) {
-            gutterDrops.splice(i, 1);
+        this.oldX = this.x;
+        this.oldY = this.y;
+        this.x += velocity.x * DAMPING;
+        this.y += velocity.y * DAMPING;
+    }
 
-            return true;
-        } else if (velocity.y < 0.24) {
-            let gutterDrop = new Particle(gutterRect.right, gutterRect.bottom, "gutter");
-            gutterDrop.move(0, 0);
+    getVelocity() {
+        return {
+            x: this.x - this.oldX,
+            y: this.y - this.oldY
+        };
+    }
 
-            setTimeout(() => {
-                gutterDrops.push(gutterDrop);
-            }, 12000 * this.x / gutterRect.width);
+    move(x, y) {
+        this.x += x;
+        this.y += y;
+    }
 
-            drops.splice(i, 1);
+    remove(i) {
+        if (this.y > gutterRect.bottom && this.y < gutterRect.bottom + 10) {
+            let velocity = this.getVelocity();
 
-            return true;
+            if (origin === "gutter" && this.y > display.height) {
+                gutterDrops.splice(i, 1);
+
+                return true;
+            } else if (velocity.y < 0.24) {
+                let gutterDrop = new Particle(gutterRect.right, gutterRect.bottom, "gutter");
+                gutterDrop.move(0, 0);
+
+                setTimeout(() => {
+                    gutterDrops.push(gutterDrop);
+                }, 12000 * this.x / gutterRect.width);
+
+                drops.splice(i, 1);
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    bounce() {
+        if (this.y > gutterRect.bottom && this.y < gutterRect.bottom + 10) {
+            let velocity = this.getVelocity();
+            this.oldY = gutterRect.bottom;
+            this.y = this.oldY - velocity.y * GRAVITY;
         }
     }
 
-    return false;
-};
-
-Particle.prototype.bounce = function() {
-    if (this.y > gutterRect.bottom && this.y < gutterRect.bottom + 10) {
-        let velocity = this.getVelocity();
-        this.oldY = gutterRect.bottom;
-        this.y = this.oldY - velocity.y * GRAVITY;
-    }
-};
-
-Particle.prototype.infinityFall = function() {
-    if (this.y > display.height) {
-        let velocity = this.getVelocity();
-        this.oldY = 0;
-        this.y = this.oldY - velocity.y * GRAVITY;
-    }
-};
-
-Particle.prototype.draw = function() {
-    ctx.lineWidth = 3;
-
-    if (this.origin === "inner") {
-        ctx.strokeStyle = innerColour;
-    } else if (this.origin === "outer") {
-        ctx.strokeStyle = outerColour;
-    } else if (this.origin === "gutter") {
-        ctx.strokeStyle = innerColour;
-    } else {
-        ctx.strokeStyle = defaultColour;
+    infinityFall() {
+        if (this.y > display.height) {
+            let velocity = this.getVelocity();
+            this.oldY = 0;
+            this.y = this.oldY - velocity.y * GRAVITY;
+        }
     }
 
-    ctx.beginPath();
-    ctx.moveTo(this.oldX, this.oldY);
-    ctx.lineTo(this.x, this.y);
-    ctx.stroke();
-};
+    draw() {
+        ctx.lineWidth = 3;
+
+        if (this.origin === "inner") {
+            ctx.strokeStyle = innerColour;
+        } else if (this.origin === "outer") {
+            ctx.strokeStyle = outerColour;
+        } else if (this.origin === "gutter") {
+            ctx.strokeStyle = innerColour;
+        } else {
+            ctx.strokeStyle = defaultColour;
+        }
+
+        ctx.beginPath();
+        ctx.moveTo(this.oldX, this.oldY);
+        ctx.lineTo(this.x, this.y);
+        ctx.stroke();
+    }
+}
 
 function outerEdgePoint() {
     const orXD = Math.random() < 0.5 ? -1 : 1;
@@ -98,8 +100,6 @@ function outerEdgePoint() {
     const vR = vRect.height / 2;
     const orR = orRect.height / 2;
 
-    const vX0 = vRect.x + vR;
-    const vY0 = vRect.y + vR;
     const orX0 = orRect.x + orR;
     const orY0 = orRect.y + orR;
 
@@ -131,8 +131,6 @@ function innerEdgePoint() {
     const cR = cRect.height / 2;
     const irR = irRect.height / 2;
 
-    const cX0 = cRect.x + cR;
-    const cY0 = cRect.y + cR;
     const irX0 = irRect.x + irR;
     const irY0 = irRect.y + irR;
 

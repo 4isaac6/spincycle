@@ -24,8 +24,6 @@ a {
 }
 
 body {
-    color: WhiteSmoke;
-    background-color: #2F2424;
     font-family: "Source Sans Pro", HelveticaNeue-Light, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
@@ -43,22 +41,8 @@ body {
     padding: 0.25em 2em;
 }
 
-.tabs td.selected {
-    border-top: 1px solid Gold;
-    border-left: 1px solid Gold;
-    border-right: 1px solid Gold;
-}
-
-.tabs td.filled {
-    border-top: 1px solid Gold;
-    border-left: 1px solid Gold;
-    border-right: 1px solid Gold;
-    border-bottom: 1px solid Gold;
-}
-
 .tabs td.gutter {
-    width: 82.5%;
-    border-bottom: 1px solid Gold;
+    width: 67.5%;
 }
 
 .space {
@@ -77,7 +61,6 @@ body {
     height: 10em;
     position: inherit;
     border-radius: 50%;
-    background-color: Gold;
 }
 
 .void {
@@ -88,7 +71,6 @@ body {
     height: 9.2575em;
     border-radius: 50%;
     position: absolute;
-    background-color: #2F2424;
     -webkit-animation: outerOrbit 17s linear infinite;
 }
 
@@ -98,7 +80,6 @@ body {
     position: inherit;
     border-radius: 50%;
     margin: 0.6718125em;
-    background-color: DarkGoldenrod;
 }
 
 .core {
@@ -108,7 +89,6 @@ body {
     width: 6.718125em;
     height: 6.718125em;
     border-radius: 50%;
-    background-color: #2F2424;
     -webkit-animation: innerOrbit 11s linear infinite;
 }
 
@@ -123,6 +103,7 @@ body {
     top: 0;
     left: 0;
     position: absolute;
+    z-index: -1;
 }
 
 #lyricContainer {
