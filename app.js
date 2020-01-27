@@ -22,8 +22,8 @@ const gutterLines = {
 const lyrics = {
     "idofuckingcare": `
 cause i have hella feelings for you
-i act like i dont fkn care
-cause im so fkn scared
+i act like i dont fucking care
+cause im so fucking scared
 im only a fool for you
     `,
     "thecurveapproached": `

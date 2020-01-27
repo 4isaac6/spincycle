@@ -28,9 +28,7 @@ body {
 }
 
 .tabs {
-    font-size: 1em;
     margin-top: 5%;
-    gutter-cells: show;
     margin-left: 2.5%;
     margin-right: 2.5%;
     text-transform: lowercase;
@@ -79,7 +77,8 @@ body {
     height: 7.5em;
     position: inherit;
     border-radius: 50%;
-    margin: 0.6718125em;
+    /* margin: 0.6718125em; */
+    margin: 0.87875em;
 }
 
 .core {
@@ -113,11 +112,15 @@ body {
     text-align: center;
     border-radius: 50%;
     word-break: break-all;
-    margin: 0.925em 0.225em;
+    /* margin: 0.925em 0.225em; margin: 0.335em 0.335em; */
+    margin: 0.9175em 0.475em;
+    padding-top: 0.5em;
+    font-size: 18px;
 }
 
 #tca {
     height: 87.5%;
     font-size: 20px;
     position: relative;
+    z-index: -2;
 }
