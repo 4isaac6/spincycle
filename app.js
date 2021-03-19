@@ -6,17 +6,21 @@
  *   2 years, 7 months, 24 days later
  *  a girl, blackbear, and an unprecidented fallout
  *   2 months, 29 days better
+ *  a number in the phone, Clairo, and an opportunity, missed
+ *   4 months, 15 days wondering
  */
 
 
 const credit = {
     "idofuckingcare": "http://beartrap.la",
-    "thecurveapproached": "http://www.riseagainst.com/music/endgame-appeal-reason-siren-song-counter-culture-sufferer-witness/approaching-curve"
+    "thecurveapproached": "http://www.riseagainst.com/music/endgame-appeal-reason-siren-song-counter-culture-sufferer-witness/approaching-curve",
+    "wouldyouaskme": "https://www.clairo.com"
 };
 
 const gutterLines = {
     "idofuckingcare": "inspired by a girl, blackbear, and an unprecidented fallout",
-    "thecurveapproached": "inspired by an ex-girlfriend, rise against, and a coffee cup"
+    "thecurveapproached": "inspired by an ex-girlfriend, rise against, and a coffee cup",
+    "wouldyouaskme": "inspired by a number in the phone, Clairo, and an opportunity, missed"
 };
 
 const lyrics = {
@@ -30,6 +34,11 @@ im only a fool for you
 the cadence again overtook the air
 up ahead there was a curve approaching
 she made no indications of slowing
+    `,
+    "wouldyouaskme": `
+ice cold, baby, i'm ice cold
+you're the only one who could make me fold
+i wouldn't ask you to take care of me
     `
 };
 

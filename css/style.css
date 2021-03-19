@@ -116,6 +116,7 @@ body {
     margin: 0.9175em 0.475em;
     padding-top: 0.5em;
     font-size: 18px;
+    text-transform: lowercase;
 }
 
 #tca {
