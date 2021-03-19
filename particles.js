@@ -212,7 +212,14 @@ function frame() {
     }
 }
 
-var ctx;
+function resetParticleColour() {
+    innerColour = window.getComputedStyle(innerRing, null).getPropertyValue('background-color');
+    outerColour = window.getComputedStyle(outerRing, null).getPropertyValue('background-color');
+    defaultColour = window.getComputedStyle(document.body, null).getPropertyValue('background-color');
+}
+
+var ctx, innerColour, outerColour, defaultColour;
+
 var drops = [];
 var gutterDrops = [];
 const display = document.getElementById('display');
@@ -228,13 +235,11 @@ const irRect = innerRing.getBoundingClientRect();
 const orRect = outerRing.getBoundingClientRect();
 const gutterRect = gutter.getBoundingClientRect();
 
-const innerColour = window.getComputedStyle(innerRing, null).getPropertyValue('background-color');
-const outerColour = window.getComputedStyle(outerRing, null).getPropertyValue('background-color');
-const defaultColour = window.getComputedStyle(document.body, null).getPropertyValue('background-color');
 
 ctx = display.getContext('2d');
 ctx.globalCompositeOperation = 'overlay';
 display.width = window.innerWidth;
 display.height = window.innerHeight;
 
+resetParticleColour();
 requestAnimationFrame(frame);
