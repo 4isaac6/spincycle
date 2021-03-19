@@ -40,7 +40,11 @@ body {
 }
 
 .tabs td.gutter {
-    width: 67.5%;
+    width: 51.75%;
+}
+
+.counter {
+    margin-top: 1em;
 }
 
 .space {
@@ -120,7 +124,7 @@ body {
 }
 
 #tca {
-    height: 87.5%;
+    height: 73.75%;
     font-size: 20px;
     position: relative;
     z-index: -2;

@@ -42,14 +42,35 @@ i wouldn't ask you to take care of me
     `
 };
 
+const endingDates = {
+    "idofuckingcare": {
+        "date": "2019-10-27",
+        "feelingSince": "better"
+    },
+    "thecurveapproached": {
+        "date": "2016-03-04",
+        "feelingSince": "later"
+    },
+    "wouldyouaskme": {
+        "date": "2020-10-03",
+        "feelingSince": "wondering"
+    }
+};
+
 const tabs = document.getElementsByTagName('td');
 const creditObject = document.getElementsByClassName('credit')[0];
 const gutterObject = document.getElementsByClassName('gutter')[0];
+const counterObject = document.getElementsByClassName('counter')[0];
 
 function loadText(title) {
-    let l, line, r;
+    let l, r, line;
+    let elapsedTime = "";
+    let now = luxon.DateTime.now();
+    let endDate = endingDates[title];
     let lyric = lyrics[title].trim();
+    let end = luxon.DateTime.fromISO(endDate.date);
     let lyricContainer = document.getElementById('lyricContainer');
+    let diff = now.diff(end, ["years", "months", "days", "hours"]).toObject();
     let s = window.getComputedStyle(lyricContainer, null).getPropertyValue('font-size');
 
     lyricContainer.innerHTML = "";
@@ -64,8 +85,16 @@ function loadText(title) {
         lyricContainer.appendChild(line);
     }
 
+    delete diff.hours;
+    for (let key in diff) {
+        let unitJoiner = (key === "days" ? ' ' : ',');
+
+        elapsedTime = [elapsedTime, diff[key], key].join(' ') + unitJoiner;
+    }
+
     gutterObject.innerHTML = gutterLines[title];
     creditObject.setAttribute('href', credit[title]);
+    counterObject.innerHTML = elapsedTime + endDate.feelingSince;
 }
 
 function loadStyleSheet(target) {
