@@ -106,8 +106,9 @@ function loadStyleSheet(target) {
     for (let sheetIndex = 0; sheetIndex < styleSheets.length; sheetIndex++) {
         let sheet = styleSheets[sheetIndex];
         let styleSheet = sheet.sheet || sheet.styleSheet;
+        console.log('here', sheet, styleSheet.href);
 
-        if (styleSheet.href.includes(activeSheet) || styleSheet.href.includes('style.css')) {
+        if (styleSheet.href.includes(activeSheet) || styleSheet.href.includes('index.css')) {
             styleSheet.disabled = false;
         } else {
             styleSheet.disabled = true;
