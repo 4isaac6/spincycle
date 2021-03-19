@@ -57,6 +57,8 @@ const endingDates = {
     }
 };
 
+const tabsContent = [credit, gutterLines, lyrics, endingDates];
+
 const tabs = document.getElementsByTagName('td');
 const creditObject = document.getElementsByClassName('credit')[0];
 const gutterObject = document.getElementsByClassName('gutter')[0];
@@ -135,5 +137,13 @@ function load(target) {
     creditObject.setAttribute('href', credit[selectedTitle]);
 }
 
+// Verify each Tab object has the same keys.
+let tabsKeys = Object.keys(tabsContent[0]).sort();
+tabsContent.forEach((tab) => {
+    let keys = Object.keys(tab).sort();
+    let errorMsg = "Inconsistent keys";
+
+    console.assert(JSON.stringify(tabsKeys) === JSON.stringify(keys), {keys, tabsKeys, errorMsg});
+});
 
 load(document.getElementsByClassName('selected')[0]);
