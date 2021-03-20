@@ -100,20 +100,18 @@ function loadText(title) {
 }
 
 function loadStyleSheet(target) {
+    let styleSheets = [...document.styleSheets];
     let activeSheet = target.dataset.theme + '.css';
-    let styleSheets = document.querySelectorAll('[rel="stylesheet"]');
 
-    for (let sheetIndex = 0; sheetIndex < styleSheets.length; sheetIndex++) {
-        let sheet = styleSheets[sheetIndex];
-        let styleSheet = sheet.sheet || sheet.styleSheet;
-        console.log('here', sheet, styleSheet.href);
+    styleSheets.forEach((styleSheet) => {
+        if (styleSheet.href.includes('index.css')) return;
 
-        if (styleSheet.href.includes(activeSheet) || styleSheet.href.includes('index.css')) {
+        if (styleSheet.href.includes(activeSheet)) {
             styleSheet.disabled = false;
         } else {
             styleSheet.disabled = true;
         }
-    }
+    });
 }
 
 function load(target) {
