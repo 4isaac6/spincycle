@@ -43,10 +43,6 @@ body {
     width: 51.75%;
 }
 
-.counter {
-    margin-top: 1em;
-}
-
 .space {
     top: 50%;
     left: 50%;
@@ -102,6 +98,11 @@ body {
     left: calc(50% - 18.2109375px);
 }
 
+#counter {
+    margin-top: 1em;
+    font-size: 13px;
+}
+
 #display {
     top: 0;
     left: 0;
@@ -123,7 +124,7 @@ body {
     text-transform: lowercase;
 }
 
-#spin-cycle {
+#spincycle {
     height: 73.75%;
     font-size: 20px;
     position: relative;

@@ -12,30 +12,30 @@
 
 
 const credit = {
-    "idofuckingcare": "http://beartrap.la",
-    "thecurveapproached": "http://www.riseagainst.com/music/endgame-appeal-reason-siren-song-counter-culture-sufferer-witness/approaching-curve",
-    "wouldyouaskme": "https://www.clairo.com"
+    "i-do-fucking-care": "http://beartrap.la",
+    "the-curve-approached": "http://www.riseagainst.com/music/endgame-appeal-reason-siren-song-counter-culture-sufferer-witness/approaching-curve",
+    "would-you-ask-me": "https://www.clairo.com"
 };
 
 const gutterLines = {
-    "idofuckingcare": "inspired by a girl, blackbear, and an unprecidented fallout",
-    "thecurveapproached": "inspired by an ex-girlfriend, rise against, and a coffee cup",
-    "wouldyouaskme": "inspired by a number in the phone, Clairo, and an opportunity, missed"
+    "i-do-fucking-care": "inspired by a girl, blackbear, and an unprecidented fallout",
+    "the-curve-approached": "inspired by an ex-girlfriend, rise against, and a coffee cup",
+    "would-you-ask-me": "inspired by a number in the phone, Clairo, and an opportunity, missed"
 };
 
 const lyrics = {
-    "idofuckingcare": `
+    "i-do-fucking-care": `
 i have hella feelings for you
 i act like i don't fucking care,
 i'm so fucking scared
 i'm only a fool for you
     `,
-    "thecurveapproached": `
+    "the-curve-approached": `
 the cadence again overtook the air
 up ahead there was a curve approaching
 she made no indications of slowing
     `,
-    "wouldyouaskme": `
+    "would-you-ask-me": `
 ice cold, baby, i'm ice cold
 you're the only one who could make me fold
 i wouldn't ask you to take care of me
@@ -43,33 +43,40 @@ i wouldn't ask you to take care of me
 };
 
 const endingDates = {
-    "idofuckingcare": {
+    "i-do-fucking-care": {
         "date": "2019-10-27",
         "feelingSince": "better"
     },
-    "thecurveapproached": {
+    "the-curve-approached": {
         "date": "2016-03-04",
         "feelingSince": "later"
     },
-    "wouldyouaskme": {
+    "would-you-ask-me": {
         "date": "2020-10-03",
         "feelingSince": "wondering"
     }
 };
 
-const tabsContent = [credit, gutterLines, lyrics, endingDates];
+const cssThemes = {
+    "i-do-fucking-care": "red",
+    "the-curve-approached": "gold",
+    "would-you-ask-me": "blonde"
+};
 
-const tabs = document.getElementsByTagName('td');
+const tabsContent = [credit, gutterLines, lyrics, endingDates, cssThemes];
+
+const tabCells = document.getElementsByTagName('td');
+const counterObject = document.getElementById('counter');
+const tabTable = document.getElementsByClassName('tabs')[0];
 const creditObject = document.getElementsByClassName('credit')[0];
 const gutterObject = document.getElementsByClassName('gutter')[0];
-const counterObject = document.getElementsByClassName('counter')[0];
 
-function loadText(title) {
+function loadLyrics(key) {
     let l, r, line;
     let elapsedTime = "";
     let now = luxon.DateTime.now();
-    let endDate = endingDates[title];
-    let lyric = lyrics[title].trim();
+    let lyric = lyrics[key].trim();
+    let endDate = endingDates[key];
     let end = luxon.DateTime.fromISO(endDate.date);
     let lyricContainer = document.getElementById('lyricContainer');
     let diff = now.diff(end, ["years", "months", "days", "hours"]).toObject();
@@ -94,14 +101,39 @@ function loadText(title) {
         elapsedTime = [elapsedTime, diff[key], key].join(' ') + unitJoiner;
     }
 
-    gutterObject.innerHTML = gutterLines[title];
-    creditObject.setAttribute('href', credit[title]);
+    gutterObject.innerHTML = gutterLines[key];
+    creditObject.setAttribute('href', credit[key]);
     counterObject.innerHTML = elapsedTime + endDate.feelingSince;
 }
 
-function loadStyleSheet(target) {
+function loadTabs() {
+    let selectedCell;
+
+    for (let i = 0; i < tabsKeys.length; i++) {
+        let key = tabsKeys[i];
+        let tab = document.createElement('td');
+
+        if (i === tabsKeys.length - 1) {
+            selectedCell = tab;
+            classStyle = "selected";
+        } else {
+            classStyle = "filled";
+        }
+
+        tab.className = classStyle;
+        tab.dataset.theme = cssThemes[key];
+        tab.innerHTML = key.replace(/-/g, ' ');
+        tab.onclick = () => { load(event.target); resetParticleColour(); };
+
+        tabTable.rows[0].prepend(tab);
+    }
+
+    return selectedCell;
+}
+
+function loadStyleSheet(key) {
     let styleSheets = [...document.styleSheets];
-    let activeSheet = target.dataset.theme + '.css';
+    let activeSheet = cssThemes[key] + ".css";
 
     styleSheets.forEach((styleSheet) => {
         if (styleSheet.href.includes('index.css')) return;
@@ -115,13 +147,14 @@ function loadStyleSheet(target) {
 }
 
 function load(target) {
-    let selectedTitle = target.innerHTML.replace(/\s/g, '');
+    let selectedTitle = target.innerHTML.trim();
+    let selectedKey = selectedTitle.replace(/\s/g, '-');
 
-    loadStyleSheet(target);
-    loadText(selectedTitle);
+    loadLyrics(selectedKey);
+    loadStyleSheet(selectedKey);
 
-    for (let tabIndex = 0; tabIndex < tabs.length - 1; tabIndex++) {
-        let tab = tabs[tabIndex];
+    for (let tabIndex = 0; tabIndex < tabCells.length - 1; tabIndex++) {
+        let tab = tabCells[tabIndex];
 
         if (tab.classList.contains('selected')) {
             tab.classList.add('filled');
@@ -132,17 +165,19 @@ function load(target) {
     target.classList.add('selected');
     target.classList.remove('filled');
 
-    gutterObject.innerHTML = gutterLines[selectedTitle];
-    creditObject.setAttribute('href', credit[selectedTitle]);
+    gutterObject.innerHTML = gutterLines[selectedKey];
+    creditObject.setAttribute('href', credit[selectedKey]);
 }
 
 // Verify each Tab object has the same keys.
-let tabsKeys = Object.keys(tabsContent[0]).sort();
+const tabsKeys = Object.keys(tabsContent[0]).sort().reverse();
 tabsContent.forEach((tab) => {
-    let keys = Object.keys(tab).sort();
+    let keys = Object.keys(tab).sort().reverse();
     let errorMsg = "Inconsistent keys";
 
     console.assert(JSON.stringify(tabsKeys) === JSON.stringify(keys), {keys, tabsKeys, errorMsg});
 });
 
-load(document.getElementsByClassName('selected')[0]);
+let selectedCell = loadTabs();
+load(selectedCell);
+//load(document.getElementsByClassName('selected')[0]);
