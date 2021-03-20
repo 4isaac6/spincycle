@@ -4,4 +4,4 @@ Named after the monotonous rotation of a laundry machine, ruminating thoughts, o
 
 ### Important Notice
 
-The text in the application isn't mine and I don't claim it as such.
+The lyrics in the application aren't mine and I don't claim it as such.

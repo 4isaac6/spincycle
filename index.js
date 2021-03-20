@@ -13,7 +13,7 @@
 
 const credit = {
     "i-do-fucking-care": "http://beartrap.la",
-    "the-curve-approached": "http://www.riseagainst.com/music/endgame-appeal-reason-siren-song-counter-culture-sufferer-witness/approaching-curve",
+    "the-curve-approached": "http://www.riseagainst.com",
     "would-you-ask-me": "https://www.clairo.com"
 };
 
