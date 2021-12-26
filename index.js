@@ -58,8 +58,8 @@ const endingDates = {
 };
 
 const cssThemes = {
-    "i-do-fucking-care": "red",
-    "the-curve-approached": "gold",
+    "i-do-fucking-care": "sangria",
+    "the-curve-approached": "espresso",
     "would-you-ask-me": "blonde"
 };
 
