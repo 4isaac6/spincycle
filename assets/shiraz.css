@@ -10,10 +10,7 @@ body {
 }
 
 .tabs td.filled {
-    border-top: 1px solid #A40536;
-    border-left: 1px solid #A40536;
-    border-right: 1px solid #A40536;
-    border-bottom: 1px solid #A40536;
+    border: 1px solid #A40536;
 }
 
 .tabs td.gutter {
