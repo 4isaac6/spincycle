@@ -107,28 +107,40 @@ function loadLyrics(key) {
 }
 
 function loadTabs() {
-    let selectedCell;
+    let row, cell, selectedCell;
 
     for (let i = 0; i < tabsKeys.length; i++) {
         let key = tabsKeys[i];
-        let tab = document.createElement('td');
+        let tab = document.createElement('a');
+        let cell = document.createElement('td');
+        let hash = window.location.hash.replace(/#/g, '');
 
-        if (i === tabsKeys.length - 1) {
-            selectedCell = tab;
-            classStyle = "selected";
+        if (hash && tabsKeys.includes(hash)) {
+            isSelected = key === hash;
         } else {
-            classStyle = "filled";
+            isSelected = i === tabsKeys.length - 1;
         }
 
-        tab.className = classStyle;
+        if (isSelected) {
+            selectedCell = tabsKeys.length - i - 1;
+            cell.className = "selected";
+        } else {
+            cell.className = "filled";
+        }
+
+        tab.href = "#" + key;
         tab.dataset.theme = cssThemes[key];
         tab.innerHTML = key.replace(/-/g, ' ');
         tab.onclick = () => { load(event.target); resetParticleColour(); };
 
-        tabTable.rows[0].prepend(tab);
+        cell.prepend(tab);
+        tabTable.rows[0].prepend(cell);
     }
 
-    return selectedCell;
+    row = tabTable.rows[0];
+    cell = row.children[selectedCell];
+
+    return cell.children[0];
 }
 
 function loadStyleSheet(key) {
@@ -162,8 +174,8 @@ function load(target) {
         }
     }
 
-    target.classList.add('selected');
-    target.classList.remove('filled');
+    target.parentNode.classList.add('selected');
+    target.parentNode.classList.remove('filled');
 
     gutterObject.innerHTML = gutterLines[selectedKey];
     creditObject.setAttribute('href', credit[selectedKey]);
@@ -175,7 +187,10 @@ tabsContent.forEach((tab) => {
     let keys = Object.keys(tab).sort().reverse();
     let errorMsg = "Inconsistent keys";
 
-    console.assert(JSON.stringify(tabsKeys) === JSON.stringify(keys), {keys, tabsKeys, errorMsg});
+    console.assert(
+        JSON.stringify(tabsKeys) === JSON.stringify(keys),
+        {keys, tabsKeys, errorMsg}
+    );
 });
 
 let selectedCell = loadTabs();
