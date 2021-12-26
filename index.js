@@ -58,9 +58,9 @@ const endingDates = {
 };
 
 const cssThemes = {
-    "i-do-fucking-care": "sangria",
+    "i-do-fucking-care": "shiraz",
     "the-curve-approached": "espresso",
-    "would-you-ask-me": "blonde"
+    "would-you-ask-me": "cape-palliser"
 };
 
 const tabsContent = [credit, gutterLines, lyrics, endingDates, cssThemes];

@@ -1,0 +1,37 @@
+body {
+    color: WhiteSmoke;
+    background-color: #B2A594;
+}
+
+.tabs td.selected {
+    border-top: 1px solid #744728;
+    border-left: 1px solid #744728;
+    border-right: 1px solid #744728;
+}
+
+.tabs td.filled {
+    border-top: 1px solid #744728;
+    border-left: 1px solid #744728;
+    border-right: 1px solid #744728;
+    border-bottom: 1px solid #744728;
+}
+
+.tabs td.gutter {
+    border-bottom: 1px solid #744728;
+}
+
+.outer-ring {
+    background-color: #744728;
+}
+
+.void {
+    background-color: #B2A594;
+}
+
+.inner-ring {
+    background-color: #92683F;
+}
+
+.core {
+    background-color: #B2A594;
+}
