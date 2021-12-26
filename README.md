@@ -1,9 +1,11 @@
 # Spin Cycle
 
-Named after the monotonous rotation of a laundry machine, ruminating thoughts, or an upside-down umbrella on a body of water.
+![(Spin Cycle)][image]
 
-### Important Notice
+[image]: assets/capture.png
 
-The lyrics in the application aren't mine and I don't claim it as such.
+Named after the monotonous rotation of a laundry machine, ruminating thoughts, or an umbrella, upside-down, spinning on a body of water.
 
-Colour palettes generated in part using [Canva](https://www.canva.com/colors/color-palette-generator/).
+The lyrics displayed on the site aren't mine and I don't claim them.
+
+Colour palettes generated in part using [Canva](https://www.canva.com/colors/color-palette-generator).
